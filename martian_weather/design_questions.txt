@@ -1,0 +1,89 @@
+=== Design and Implementation Plan Questions ===
+
+Below are a few questions about how you will design your program and your
+implementation plan. It is crucial to have a reasonable design and
+implementation plan before you start your program. Without this, success is
+unlikely. The following questions will help guide you in your thinking and
+raise some important questions and issues. There is no single "right" answer
+to each of the questions but there are some "wrong" answers. Some designs and
+plans are better than others. The point here is for you to think about what
+you're going to do.
+
+Make a copy of this file and edit it, adding your answers then turn this
+document in.
+
+----------------------------------------------------------------------
+
+1) What classes to you intend to create? List each of the classes and provide
+a brief description of the role of that class. This list is not set in
+stone. As you implement your program, if you find that you need additional
+classes that are not in this list, or that something you listed here doesn't
+really fit, that's ok. The point is to start thinking about the high-level
+structure of your program.
+
+As of right now, I will start with the three that are suggested in the instructions.
+There is a good chance that I will change or add to these when I start writing the actual
+code tomorrow.
+
+Datalogger:  
+This is required to have at least two functions in it, including addData() and printReport().  The addData function 
+will be responsible for taking the data that is read in and putting it into the linked list, created in the
+linkedList function.  The printReport function will print each item of the linked list, using the data from the 
+weatherData class.  It will print the current item of the linked list in the required format.
+I will also need a function that finds the range of the time stamps, most likely by setting the max and min as it traverses, and
+then reporting them as the range.
+There will need to be a function that calculates max and min temp values, and another function (or two) that calculates the top 1 and bottom 1
+percents.  Once that it found, it will need to traverse the list and compare all the temps in the list, adding the items that fit in the top or bottom
+1 percents to a new linked list, which will need to be reported in order.
+
+
+linkedlist:
+This class will be responsible for creating and adding to my linked list(s).  It will have a function that is called during printReport or in any other
+part of the code that requires it, that traverses the linked list so that each item in the list is able to be printed or analyzed.  It also needs to have
+ a function that works with addData that fills the list as it is being created.  There will also need to be a function that checks timestamps before adding
+ to the list.If the timestamp being added matches one on the list, it will return a value that tells the program to move on to the next item to be added.
+
+weatherdata:
+This class will handle all of my data.  This will be the 'triple chained' part that was talked about in class and in the instructions.
+This will contain all of the setters and getters for the data that will be contained in the linked list.
+
+2) What class do you plan to implement first? Why?
+
+I think I will most likely start with the linkedlist class.  I like to start from the ground up when
+starting new code, and I feel like starting at creating the actual linked list will be setting a good
+foundation to work up from.  If not here, I will most likely start with the datalogger class.
+
+3) How do you plan address the requirement of removing all of the records that
+have the same timestamp value? Will your strategy work if there are an odd
+number of records (e.g. 3) with the same timestamp value?
+
+I will most likely have a function that checks for identical timestamps before adding to the list.  If the timestamp is
+found in the list, I will return a value that tells the program to discard this one and move on to the next item to be added. 
+I don't see the number of records with the same timestamp being an issue since the list will move on to the next item if the
+timestamp matches another timestamp.
+
+4) One approach to finding the max (or min) values is to check each value as
+it is being inserted into the list. If the new value is larger than the
+current max (or smaller than the current minimum) then save that value as the
+new max (or min). This approach will not work for this program. Why not?
+
+I am actually not sure why that would not work... that was my plan.  The first item on the list would set the max and the min to the first values, and 
+the I wanted to make a function that would traverse the list and find if the value is greater/less than or equal to the current max or min, and record 
+that as the max or min.  I suppose I will find out why that does not work when I implement my code.
+
+5) What is your testing strategy? Will you only use the given data file or
+will you create smaller data files to help focus your testing?
+
+I plan to use just the given data file for the testing.  I want to make sure that it will work
+with the data file that will be used for the final project.
+
+6) What is your strategy for finding and addressing memory leaks? Will you get
+the whole program working first and then address memory leaks or will you
+check on memory leaks as you go?
+
+I will most likely get the entire program working and then search for memory leaks at the 
+end, using Valgrind.  I tend to have an easier time getting everything done
+and then working backwards to squash all the bugs at once if possible.
+
+
+
